@@ -39,6 +39,7 @@ function noerror()
 function set_state(button)
 {
 	CLIENT=window.location.hash.substr(1);
+	
 	var xhttp;
 	document.getElementById(button).className = "button_inprogress";
 	
@@ -78,13 +79,14 @@ function set_state(button)
 			}
 		}
 	};
-	xhttp.open("GET", SERVER + 'cgi-bin/set_state.cgi?' + group + '=' + button + "&client=" + CLIENT);
+	xhttp.open("GET", '/cgi-bin/set_state.cgi?' + group + '=' + button + "&client=" + CLIENT);
 	xhttp.send();
 }
 
 function update_state()
 {
 	CLIENT=window.location.hash.substr(1);
+
 	var xhttp;
 	xhttp=new XMLHttpRequest();
 	xhttp.timeout = 1000;
@@ -100,7 +102,7 @@ function update_state()
 			else error();
  		}
 	};
-	xhttp.open("GET", SERVER+'/cgi-bin/get_state.cgi?web' + CLIENT);
+	xhttp.open("GET", '/cgi-bin/get_state.cgi?web' + CLIENT);
 	xhttp.send();
 }
 
