@@ -1,8 +1,17 @@
 #!/bin/bash
-OTHER_SERVER=192.168.0.232
-
-
 echo -ne "Content-type: text/plain\r\n\r\n"
+
+case $HOSTNAME in
+	server1)
+		OTHER_SERVER=server2
+		;;
+	server2)
+		OTHER_SERVER=server1
+		;;
+	*)
+		echo "Wrong HOSTNAME"
+		exit 1
+esac
 
 PN="${QUERY_STRING}"
 P1="${PN%%&*}"
