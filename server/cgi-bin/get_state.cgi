@@ -1,8 +1,8 @@
 #!/bin/bash
 declare -A LIFETIME
-LIFETIME[horizontal]=4
-LIFETIME[vertical]=3
-LIFETIME[belt]=10
+LIFETIME[horizontal]=6
+LIFETIME[vertical]=6
+LIFETIME[belt]=60
 
 declare -A NOOP
 NOOP[horizontal]=noh
