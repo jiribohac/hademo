@@ -61,8 +61,9 @@ control init
 
 while true; do
 	control led
-	RES=`curl --max-time --fail 0.8 "http://${SERVER}/cgi-bin/excavator-state.cgi?$CLIENT"`
+	RES=`curl --max-time 0.8 --fail "http://${SERVER}/cgi-bin/excavator-state.cgi?$CLIENT"`
 	if [[ $? -ne 0 ]]; then
+		control off
 		for ((i=0; i<8; ++i)); do
 			usleep 100000
 			control	led
@@ -73,7 +74,30 @@ while true; do
 	fi
 
 	control noled
-	read STATUS B H V <<< ${RES}
-	echo $STATUS: B=$B H=$H V=$V
+	read B H V <<< ${RES}
+#	echo $STATUS: B=$B H=$H V=$V
+
+	if [[ "x${B}" == x1 ]]; then
+		control b
+	else
+		control nob
+	fi
+	
+	if [[ "x${H}" == xcw ]]; then
+		control cw
+	elif [[ "x${H}" == xccw ]]; then
+		control ccw
+	else
+		control noh
+	fi
+
+	if [[ "x${V}" == xup ]]; then
+		control up
+	elif [[ "x${V}" == xdown ]]; then
+		control down
+	else
+		control nov
+	fi
+	
 	sleep 1
 done
