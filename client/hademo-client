@@ -1,0 +1,13 @@
+#!/bin/bash
+
+SERVER=192.168.0.231
+
+while true; do
+	RES=`curl -m 0.8 "http://${SERVER}/cgi-bin/excavator-state.cgi"`
+	if [[ $? -ne 0 ]]; then
+		echo "error"
+		continue
+	fi
+	echo OK: $RES
+	sleep 1
+done

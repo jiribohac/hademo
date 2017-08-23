@@ -1,0 +1,7 @@
+[Unit]
+Description=HA Demo Client
+
+[Service]
+ExecStart=/usr/local/sbin/hademo-client
+Restart=always
+
