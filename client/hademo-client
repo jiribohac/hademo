@@ -70,10 +70,11 @@ while true; do
 			control	led
 			usleep 100000
 			control	noled
+		done
 		continue
 	fi
 
-	read B H V <<< ${RES}
-	echo B=$B H=$H V=$V
+	read STATUS B H V <<< ${RES}
+	echo $STATUS: B=$B H=$H V=$V
 	sleep 1
 done
