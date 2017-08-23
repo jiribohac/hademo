@@ -1,0 +1,6 @@
+#!/bin/bash
+
+[[ -z $1 ]] && { echo specify client; exit 1; }
+
+rsync -av --exclude deploy ./ root@$1:/srv/www/
+
