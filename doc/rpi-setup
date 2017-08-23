@@ -49,6 +49,10 @@ IPADDR='192.168.0.232/24'
 STARTMODE='auto'
 
 
+systemctl enable apache2
+systemctl start apache2
+
+
 
 
 CLIENT SETUP

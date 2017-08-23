@@ -1,0 +1,9 @@
+#!/bin/bash
+
+[[ -z $1 ]] && { echo specify client; exit 1; }
+
+scp hademo-client.service root@$1:/etc/systemd/system &&
+scp hademo-client root@$1:/usr/local/sbin/ &&
+ssh root@$1 "systemctl enable hademo-client.service; systemctl start hademo-client.service"
+
+
