@@ -4,6 +4,6 @@
 
 scp hademo-client.service root@$1:/etc/systemd/system &&
 scp hademo-client root@$1:/usr/local/sbin/ &&
-ssh root@$1 "systemctl enable hademo-client.service; systemctl start hademo-client.service"
+ssh root@$1 "systemctl enable hademo-client.service; systemctl restart hademo-client.service"
 
 
