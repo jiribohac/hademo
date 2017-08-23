@@ -1,0 +1,19 @@
+wiringPi-gpio mode 8 output
+wiringPi-gpio mode 9 output
+
+while true; do
+
+        wiringPi-gpio write 8 1
+        usleep 100000
+        wiringPi-gpio write 8 0
+
+        usleep 300000
+
+        wiringPi-gpio write 9 1
+        usleep 100000       
+        wiringPi-gpio write 9 0
+
+        usleep 500000
+
+done
+
