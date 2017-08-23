@@ -1,0 +1,24 @@
+- download, extract, dd to SD card:
+	http://dist.suse.de/ibs/SUSE:/SLE-12-SP3:/GA/images/
+
+- connect monitor and keyboard, click next->next->next to finish installation
+- delete MAC address from /etc/udev/rules.d/70-persistent-net.rules to allow swapping SD cards
+
+MAC / IP addresses of our RPIs:
+b8:27:eb:57:6b:45       fe80::ba27:ebff:fe57:6b45    
+b8:27:eb:b5:01:5e       fe80::ba27:ebff:feb5:15e     
+b8:27:eb:ef:12:0c       fe80::ba27:ebff:feef:120c    
+b8:27:eb:95:fb:d6       fe80::ba27:ebff:fe95:fbd6
+
+
+zypper ar http://download.suse.de/ibs/SUSE:/SLE-12-SP3:/GA/standard/ sle12sp3
+
+zypper ar ftp://dist.arch.suse.de/install/SLP/SLE-12-SP3-Server-LATEST/x86_64/DVD1 sle12-sp3
+zypper ar http://download.suse.de/ibs/SUSE:/SLE-12-SP3:/Update/standard/ sle12-sp3-update
+zypper ar http://download.opensuse.org/repositories/home:/malcolmlewis:/SLES12-SP2-RPI-Extra/SLES12-SP2-RPI-Extra/ rpi-extra
+zypper in git wiringPi wiringPi-devel libwiringPi2
+
+
+
+
+
