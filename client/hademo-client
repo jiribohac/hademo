@@ -61,7 +61,7 @@ control init
 
 while true; do
 	control led
-	RES=`curl --max-time 0.8 --fail "http://${SERVER}/cgi-bin/get_state.cgi?$CLIENT"`
+	RES=`curl -s --max-time 0.8 --fail "http://${SERVER}/cgi-bin/get_state.cgi?$CLIENT"`
 	if [[ $? -ne 0 ]]; then
 		control off
 		for ((i=0; i<8; ++i)); do

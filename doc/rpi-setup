@@ -25,6 +25,8 @@ zypper ar ftp://dist.arch.suse.de/install/SLP/SLE-12-SP3-Server-LATEST/aarch64/D
 zypper ar http://download.suse.de/ibs/SUSE:/SLE-12-SP3:/Update/standard/ sle12-sp3-update
 zypper ar http://download.opensuse.org/repositories/home:/malcolmlewis:/SLES12-SP2-RPI-Extra/SLES12-SP2-RPI-Extra/ rpi-extra
 zypper in git wiringPi wiringPi-devel libwiringPi2
+chmod u+s /usr/bin/wiringPi-gpio
+
 
 git clone http://github.com/jiribohac/hademo.git
 

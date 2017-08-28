@@ -10,8 +10,23 @@ NOOP[horizontal]=noh
 NOOP[vertical]=nov
 NOOP[belt]=nobelt
 
+#move to a service!
+wiringPi-gpio mode 8 output
+wiringPi-gpio mode 9 output
+
 
 echo -ne "Content-type: text/plain\r\n\r\n"
+
+
+LED=false
+if [[ "x$QUERY_STRING" == "x1" ]]; then
+	LED="wiringPi-gpio write 9 "
+elif [[ "x$QUERY_STRING" == "x2" ]]; then
+	LED="wiringPi-gpio write 8 "
+fi
+
+
+$LED 1
 
 RESPONSE="OK "
 for i in belt vertical horizontal; do 
@@ -32,3 +47,5 @@ for i in belt vertical horizontal; do
 done
 
 echo $RESPONSE
+
+$LED 0
