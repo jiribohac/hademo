@@ -1,16 +1,35 @@
 #!/bin/bash
-DBDIR=/dev/shm/hademo1
 OTHER_SERVER=192.168.0.232
 
-[ -d $DBDIR ] || mkdir -p $DBDIR
 
 echo -ne "Content-type: text/plain\r\n\r\n"
 
-P1="${QUERY_STRING%%&*}"
-P2="${QUERY_STRING##*&}"
+PN="${QUERY_STRING}"
+P1="${PN%%&*}"
+PN="${PN#*&}"
 
 GROUP="${P1%%=*}"
 VALUE="${P1##*=}"
+
+P1="${PN%%&*}"
+PN="${PN#*&}"
+P2_NAME="${P1%%=*}"
+P2_VALUE="${P1##*=}"
+
+P1="${PN%%&*}"
+PN="${PN#*&}"
+P3_NAME="${P1%%=*}"
+P3_VALUE="${P1##*=}"
+
+CLIENT="$P2_VALUE"
+if [[ "x$CLIENT" == "x1" ]]; then
+	DBDIR=/dev/shm/hademo1
+elif [[ "x$CLIENT" == "x2" ]]; then
+	DBDIR=/dev/shm/hademo2
+else
+	exit 1
+fi
+[ -d $DBDIR ] || mkdir -p $DBDIR
 
 case "$GROUP" in
 	belt|vertical|horizontal)
@@ -27,6 +46,8 @@ echo "$VALUE" > $T
 mv -f $T $DBDIR/$GROUP
 echo OK
 
-if [[ "x$P2" != "xnopropagate" ]]; then
+if [[ "x$P3_NAME" != "xnopropagate" ]]; then
 	curl -s --max-time 0.5 --fail "http://${OTHER_SERVER}/cgi-bin/set_state.cgi?${QUERY_STRING}&nopropagate" 
 fi
+
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+	<title>SUSE Excavator Control</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<link rel="stylesheet" href="screen.css"/>
+</head>
+<body>
+
+<script>
+	SERVER="http://192.168.0.231/";
+	CLIENT=1;
+</script>
+<script type="text/javascript" src="control.js"></script>
+
+<div class="vertical">
+	<div class="button_inactive" id="up" onclick="set_state('up');">^</div>
+	<div class="button_inactive" id="nov" onclick="set_state('nov');">-</div>
+	<div class="button_inactive" id="down" onclick="set_state('down');">v</div>
+</div>
+
+<div class="horizontal">
+	<div class="button_inactive" id="cw" onclick="set_state('cw');">\_</div>
+	<div class="button_inactive" id="noh" onclick="set_state('noh');">.</div>
+	<div class="button_inactive" id="ccw" onclick="set_state('ccw');">_/</div>
+</div>
+
+<div class="belt">
+	<div class="button_inactive" id="belt" onclick="set_state('belt');">1</div>
+	<div class="button_inactive" id="nobelt" onclick="set_state('nobelt');">0</div>
+</div>
+
+<div id="error" class="error_hidden">
+	Error communicating with the server. Try <a href="haha">HA</a>!
+</div>
+
+</body>
+</html>
+
+
