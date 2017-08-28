@@ -1,6 +1,5 @@
 #!/bin/bash
 
-[[ -z $1 ]] && { echo specify client; exit 1; }
-
-rsync -av --exclude deploy ./ root@$1:/srv/www/
+rsync -av --exclude deploy --delete ./ root@192.168.0.231:/srv/www/
+rsync -av --exclude deploy --delete ./ root@192.168.0.232:/srv/www/
 

@@ -6,6 +6,10 @@
 	<link rel="stylesheet" href="screen.css"/>
 </head>
 <body>
+
+<script>
+	SERVER="http://192.168.0.231/";
+</script>
 <script type="text/javascript" src="control.js"></script>
 
 <div class="vertical">
@@ -24,6 +28,11 @@
 	<div class="button_inactive" id="belt" onclick="set_state('belt');">1</div>
 	<div class="button_inactive" id="nobelt" onclick="set_state('nobelt');">0</div>
 </div>
+
+<div id="error" class="error_hidden">
+	Error communicating with the server. Try <a href="haha">HA</a>!
+</div>
+
 </body>
 </html>
 

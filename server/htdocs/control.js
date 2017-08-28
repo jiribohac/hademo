@@ -28,13 +28,18 @@ function update_buttons(belt, vertical, horizontal)
 
 function error()
 {
-	alert("error");
+	document.getElementById("error").className = "error_visible";
+}
+
+function noerror()
+{
+	document.getElementById("error").className = "error_hidden";
 }
 
 function set_state(button)
 {
 	var xhttp;
-	document.getElementById(button).className ="button_inprogress";
+	document.getElementById(button).className = "button_inprogress";
 	
 	belt = null;
 	vertical = null;
@@ -72,7 +77,7 @@ function set_state(button)
 			}
 		}
 	};
-	xhttp.open("GET", 'http://localhost/cgi-bin/set_state.cgi?' + group + '=' + button);
+	xhttp.open("GET", SERVER + 'cgi-bin/set_state.cgi?' + group + '=' + button);
 	xhttp.send();
 }
 
@@ -85,13 +90,15 @@ function update_state()
 		if (this.readyState == 4) {
 			if (this.status == 200) {
 				res = xhttp.responseText.trim().split(" ");
-	    			if (res[0] == "OK")
+	    			if (res[0] == "OK") {
 					update_buttons(res[1], res[2], res[3]);
+					noerror();
+				}
 			}
 			else error();
  		}
 	};
-	xhttp.open("GET", 'http://localhost/cgi-bin/get_state.cgi');
+	xhttp.open("GET", SERVER+'/cgi-bin/get_state.cgi');
 	xhttp.send();
 }
 

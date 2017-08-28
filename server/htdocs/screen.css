@@ -1,19 +1,19 @@
 div.button_inactive {
-	background: #ccc;
+	background-color: #ccc;
 	width: 50px;
 	height: 50px;
 	margin: 10px;
 }
 
 div.button_inprogress {
-	background: #c00;
+	background-color: #c00;
 	width: 50px;
 	height: 50px;
 	margin: 10px;
 }
 
 div.button_active {
-	background: #0c0;
+	background-color: #0c0;
 	width: 50px;
 	height: 50px;
 	margin: 10px;
@@ -39,4 +39,18 @@ div.belt {
 	position: fixed;
 	left: 200px;
 	top: 200px;
+}
+
+div.error_visible {
+	position: fixed;
+	top: 20px;
+	bottom: 20px;
+	left: 20px;
+	right: 20px;
+	background-color: #f00;
+	color: #ff0;
+}
+
+div.error_hidden {
+	display:none;
 }
