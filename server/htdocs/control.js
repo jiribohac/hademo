@@ -98,7 +98,7 @@ function update_state()
 			else error();
  		}
 	};
-	xhttp.open("GET", SERVER+'/cgi-bin/get_state.cgi?' + CLIENT);
+	xhttp.open("GET", SERVER+'/cgi-bin/get_state.cgi?web' + CLIENT);
 	xhttp.send();
 }
 

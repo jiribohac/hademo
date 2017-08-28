@@ -24,6 +24,10 @@ if [[ "x$QUERY_STRING" == "x1" ]]; then
 elif [[ "x$QUERY_STRING" == "x2" ]]; then
 	LED="wiringPi-gpio write 8 "
 	DBDIR=/dev/shm/hademo2
+elif [[ "x$QUERY_STRING" == "xweb1" ]]; then
+	DBDIR=/dev/shm/hademo1
+elif [[ "x$QUERY_STRING" == "xweb2" ]]; then
+	DBDIR=/dev/shm/hademo2
 fi
 
 
