@@ -26,10 +26,11 @@ function update_buttons(belt, vertical, horizontal)
 	}
 }
 
-function timeout()
+function error()
 {
-	alert("timeout");
+	alert("error");
 }
+
 function set_state(button)
 {
 	var xhttp;
@@ -61,27 +62,37 @@ function set_state(button)
 	}
 	xhttp=new XMLHttpRequest();
 	xhttp.timeout = 1000;
-	xhttp.onTimeout = timeout;
 	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200)
-    			update_buttons(belt, vertical, horizontal);
- 		};
+		if (this.readyState == 4) {
+			if (this.status == 200) {
+				update_buttons(belt, vertical, horizontal);
+			}
+			else {
+				error();
+			}
+		}
+	};
 	xhttp.open("GET", 'http://localhost/cgi-bin/set_state.cgi?' + group + '=' + button);
 	xhttp.send();
 }
 
 function update_state()
 {
+	var xhttp;
 	xhttp=new XMLHttpRequest();
 	xhttp.timeout = 1000;
-	xhttp.onTimeout = timeout;
 	xhttp.onreadystatechange = function() {
-		if (this.readyState == 4 && this.status == 200)
-			res = xhttp.responseText;
-    			if (res[0] == "OK")
-				update_buttons(res[1], res[2], res[3]);
- 		};
+		if (this.readyState == 4) {
+			if (this.status == 200) {
+				res = xhttp.responseText.trim().split(" ");
+	    			if (res[0] == "OK")
+					update_buttons(res[1], res[2], res[3]);
+			}
+			else error();
+ 		}
+	};
 	xhttp.open("GET", 'http://localhost/cgi-bin/get_state.cgi');
 	xhttp.send();
 }
 
+setInterval(update_state, 1000);

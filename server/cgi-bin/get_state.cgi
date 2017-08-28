@@ -8,7 +8,7 @@ LIFETIME[belt]=10
 declare -A NOOP
 NOOP[horizontal]=noh
 NOOP[vertical]=nov
-NOOP[belt]=nob
+NOOP[belt]=nobelt
 
 
 echo -ne "Content-type: text/plain\r\n\r\n"

@@ -1,6 +1,7 @@
 #!/bin/bash
 DBDIR=/dev/shm/hademo1
 [ -d $DBDIR ] || mkdir -p $DBDIR
+
 echo -ne "Content-type: text/plain\r\n\r\n"
 
 GROUP="${QUERY_STRING%%=*}"
@@ -18,5 +19,5 @@ esac
 
 T=`mktemp -p $DBDIR` || exit 1
 echo "$VALUE" > $T
-mv $T $DBDIR/$GROUP
-
+mv -f $T $DBDIR/$GROUP
+echo OK
