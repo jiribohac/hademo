@@ -1,0 +1,42 @@
+div.button_inactive {
+	background: #ccc;
+	width: 50px;
+	height: 50px;
+	margin: 10px;
+}
+
+div.button_inprogress {
+	background: #c00;
+	width: 50px;
+	height: 50px;
+	margin: 10px;
+}
+
+div.button_active {
+	background: #0c0;
+	width: 50px;
+	height: 50px;
+	margin: 10px;
+}
+
+div.horizontal {
+	position: fixed;
+	top: 0px;
+	left: 100px;
+}
+
+div.horizontal div {
+	float: left;
+}
+
+div.vertical {
+	position: fixed;
+	left: 0;
+	top: 100px;
+}
+
+div.belt {
+	position: fixed;
+	left: 200px;
+	top: 200px;
+}

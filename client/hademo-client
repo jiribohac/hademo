@@ -61,7 +61,7 @@ control init
 
 while true; do
 	control led
-	RES=`curl --max-time 0.8 --fail "http://${SERVER}/cgi-bin/excavator-state.cgi?$CLIENT"`
+	RES=`curl --max-time 0.8 --fail "http://${SERVER}/cgi-bin/get_state.cgi?$CLIENT"`
 	if [[ $? -ne 0 ]]; then
 		control off
 		for ((i=0; i<8; ++i)); do
@@ -74,10 +74,9 @@ while true; do
 	fi
 
 	control noled
-	read B H V <<< ${RES}
-#	echo $STATUS: B=$B H=$H V=$V
+	read STATUS B V H <<< ${RES}
 
-	if [[ "x${B}" == x1 ]]; then
+	if [[ "x${B}" == xbelt ]]; then
 		control b
 	else
 		control nob
