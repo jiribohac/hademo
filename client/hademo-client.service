@@ -5,3 +5,6 @@ Description=HA Demo Client
 ExecStart=/usr/local/sbin/hademo-client
 Restart=always
 
+[Install]
+WantedBy=multi-user.target
+
