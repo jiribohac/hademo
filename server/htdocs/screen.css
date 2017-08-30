@@ -1,54 +1,164 @@
-div.button_inactive {
-	background-color: #ccc;
-	width: 50px;
-	height: 50px;
-	margin: 10px;
+body {
+	background-image: url("bg.png");
+	background-color: white;
 }
 
-div.button_inprogress {
-	background-color: #c00;
-	width: 50px;
-	height: 50px;
-	margin: 10px;
-}
-
-div.button_active {
-	background-color: #0c0;
-	width: 50px;
-	height: 50px;
-	margin: 10px;
-}
-
-div.horizontal {
-	position: fixed;
-	top: 0px;
-	left: 100px;
-}
-
-div.horizontal div {
-	float: left;
+body, div {
+	background-repeat: no-repeat;
 }
 
 div.vertical {
 	position: fixed;
 	left: 0;
-	top: 100px;
+	top: 110px;
+	width: 90px;
+}
+div.vertical div {
+	width: 70px;
+	height: 60px;
+	margin: 10px;
+}
+
+div.horizontal {
+	position: fixed;
+	top: 328px;
+	left: 160px;
+}
+
+div.horizontal div {
+	float: left;
+	height: 60px;
+	width: 50px;
+	margin: 0px;
 }
 
 div.belt {
 	position: fixed;
-	left: 200px;
-	top: 200px;
+	left: 65px;
+	top: 35px;
+}
+
+div.belt div {
+	float: right;
+	width: 78px;
+	height: 75px;
+	margin: 0px;
+}
+
+
+div#down.button_inactive {
+	background-image: url("arrow_down_inactive.gif");
+	background-color: white;
+}
+
+div#down.button_inprogress {
+	background-image: url("arrow_down_pending.gif");
+	background-color: white;
+}
+
+div#down.button_active {
+	background-image: url("arrow_down_active.gif");
+	background-color: white;
+}
+
+div#up.button_inactive {
+	background-image: url("arrow_up_inactive.gif");
+	background-color: white;
+}
+
+div#up.button_inprogress {
+	background-image: url("arrow_up_pending.gif");
+	background-color: white;
+}
+
+div#up.button_active {
+	background-image: url("arrow_up_active.gif");
+	background-color: white;
+}
+
+div#cw.button_inactive {
+	background-image: url("arrow_rot_left_inactive.gif");
+	background-color: white;
+}
+
+div#cw.button_inprogress {
+	background-image: url("arrow_rot_left_pending.gif");
+	background-color: white;
+}
+
+div#cw.button_active {
+	background-image: url("arrow_rot_left_active.gif");
+	background-color: white;
+}
+
+div#ccw.button_inactive {
+	background-image: url("arrow_rot_right_inactive.gif");
+	background-color: white;
+}
+
+div#ccw.button_inprogress {
+	background-image: url("arrow_rot_right_pending.gif");
+	background-color: white;
+}
+
+div#ccw.button_active {
+	background-image: url("arrow_rot_right_active.gif");
+	background-color: white;
+}
+
+div#nov.button_inactive, div#noh.button_inactive {
+	background-image: url("stop_inactive.gif");
+	background-color: white;
+}
+
+div#nov.button_active, div#noh.button_active {
+	background-image: url("stop_active.gif");
+	background-position: center;
+	background-color: white;
+}
+
+div#nov.button_inprogress, div#noh.button_inprogress {
+	background-image: url("stop_pending.gif");
+	background-color: white;
+}
+
+div#belt.button_inactive {
+	background-image: url("dig_play.gif");
+	background-color: white;
+}
+
+div#belt.button_active {
+	background-image: url("dig_play_active.gif");
+	background-color: white;
+}
+
+div#belt.button_inprogress {
+	background-image: url("dig_play_pending.gif");
+	background-color: white;
+}
+
+div#nobelt.button_inactive {
+	background-image: url("dig_stop.gif");
+	background-color: white;
+}
+
+div#nobelt.button_active {
+	background-image: url("dig_stop_active.gif");
+	background-color: white;
+}
+
+div#nobelt.button_inprogress {
+	background-image: url("dig_stop_pending.gif");
+	background-color: white;
 }
 
 div.error_visible {
 	position: fixed;
-	top: 20px;
-	bottom: 20px;
-	left: 20px;
-	right: 20px;
-	background-color: #f00;
-	color: #ff0;
+	top: 170px;
+	left: 250px;
+	width: 250px;
+	background-color: yellow;
+	border: solid red 4px;
 }
 
 div.error_hidden {
