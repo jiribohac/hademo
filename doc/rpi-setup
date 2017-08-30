@@ -24,11 +24,34 @@ BASIC SETUP:
 zypper ar ftp://dist.arch.suse.de/install/SLP/SLE-12-SP3-Server-LATEST/aarch64/DVD1 sle12-sp3
 zypper ar http://download.suse.de/ibs/SUSE:/SLE-12-SP3:/Update/standard/ sle12-sp3-update
 zypper ar http://download.opensuse.org/repositories/home:/malcolmlewis:/SLES12-SP2-RPI-Extra/SLES12-SP2-RPI-Extra/ rpi-extra
-zypper in git wiringPi wiringPi-devel libwiringPi2
+zypper in git-core wiringPi wiringPi-devel libwiringPi2
 chmod u+s /usr/bin/wiringPi-gpio
+#git clone http://github.com/jiribohac/hademo.git
 
 
-git clone http://github.com/jiribohac/hademo.git
+#read-only SD card
+echo 'GRUB_CMDLINE_LINUX="root=/dev/mmcblk0p3 ro noresume"' >> /etc/default/grub
+update-bootloader
+cat > /etc/fstab <<_END
+/dev/mmcblk0p3 / btrfs ro,noatime,compress=lzo 1 1
+/dev/mmcblk0p2 /boot ext3 ro,defaults 1 2
+/dev/mmcblk0p1 /boot/efi vfat ro,defaults 0 0
+tmpfs /tmp tmpfs defaults 0 0
+tmpfs /var/log tmpfs defaults 0 0
+tmpfs /var/tmp tmpfs defaults 0 0
+tmpfs /var/lib/ntp/var/run/ntp tmpfs defaults 0 0
+_END
+mkinitrd
+echo -e '#!/bin/bash\nmount -o remount,rw /' > /usr/local/sbin/rw
+echo -e '#!/bin/bash\nmount -o remount,ro /' > /usr/local/sbin/ro
+chmod a+x /usr/local/sbin/r[wo]
+cat > /etc/tmpfiles.d/apache.conf <<_END
+d    /var/log/apache2   0755 root root 10d -
+d    /var/run/apache2/sysconfig.d   0755 root root 10d -
+_END
+reboot
+
+
 
 
 SERVER SETUP

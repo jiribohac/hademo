@@ -1,5 +1,7 @@
 #!/bin/bash
-
-rsync -av --exclude deploy --delete ./ root@192.168.0.231:/srv/www/
-rsync -av --exclude deploy --delete ./ root@192.168.0.232:/srv/www/
+for i in 192.168.0.231 192.168.0.232; do
+	ssh root@${i} rw
+	rsync -av --exclude deploy --delete ./ root@${i}:/srv/www/
+	ssh root@${i} ro
+done
 

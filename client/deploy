@@ -1,9 +1,11 @@
 #!/bin/bash
 
 for i in 192.168.0.241 192.168.0.242; do 
+	ssh root@${i} rw
 	scp hademo-client.service root@$i:/etc/systemd/system &&
 	scp hademo-client root@$i:/usr/local/sbin/ &&
 	ssh root@$i "systemctl enable hademo-client.service; systemctl restart hademo-client.service"
+	ssh root@${i} ro
 done
 
 
