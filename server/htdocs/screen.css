@@ -108,6 +108,7 @@ div#ccw.button_active {
 
 div#nov.button_inactive, div#noh.button_inactive {
 	background-image: url("stop_inactive.gif");
+	background-position: center;
 	background-color: white;
 }
 
@@ -119,6 +120,7 @@ div#nov.button_active, div#noh.button_active {
 
 div#nov.button_inprogress, div#noh.button_inprogress {
 	background-image: url("stop_pending.gif");
+	background-position: center;
 	background-color: white;
 }
 
