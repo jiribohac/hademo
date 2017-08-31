@@ -1,14 +1,23 @@
 body {
-	background-image: url("bg.png");
-	background-color: white;
+	overflow: auto;
 }
 
-body, div {
+div.container {
+	background-image: url("bg.png");
+	background-color: white;
+	width: 506px;
+	height: 390px;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+div.container, div {
 	background-repeat: no-repeat;
 }
 
 div.vertical {
-	position: fixed;
+	position: absolute;
 	left: 0;
 	top: 110px;
 	width: 90px;
@@ -20,7 +29,7 @@ div.vertical div {
 }
 
 div.horizontal {
-	position: fixed;
+	position: absolute;
 	top: 328px;
 	left: 160px;
 }
@@ -33,7 +42,7 @@ div.horizontal div {
 }
 
 div.belt {
-	position: fixed;
+	position: absolute;
 	left: 65px;
 	top: 35px;
 }
@@ -155,7 +164,7 @@ div#nobelt.button_inprogress {
 }
 
 div.error_visible {
-	position: fixed;
+	position: absolute;
 	top: 170px;
 	left: 250px;
 	width: 250px;
