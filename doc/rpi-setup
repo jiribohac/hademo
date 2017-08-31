@@ -28,6 +28,7 @@ zypper in git-core wiringPi wiringPi-devel libwiringPi2
 chmod u+s /usr/bin/wiringPi-gpio
 #git clone http://github.com/jiribohac/hademo.git
 
+echo 'GRUB_TIMEOUT=1' >> /etc/default/grub
 
 #read-only SD card
 echo 'GRUB_CMDLINE_LINUX="root=/dev/mmcblk0p3 ro noresume"' >> /etc/default/grub

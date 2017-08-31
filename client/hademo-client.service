@@ -4,6 +4,7 @@ Description=HA Demo Client
 [Service]
 ExecStart=/usr/local/sbin/hademo-client
 Restart=always
+DefaultDependencies=false
 
 [Install]
 WantedBy=multi-user.target
