@@ -38,6 +38,7 @@ function noerror()
 
 function set_state(button)
 {
+	CLIENT=window.location.hash.substr(1);
 	var xhttp;
 	document.getElementById(button).className = "button_inprogress";
 	
@@ -83,6 +84,7 @@ function set_state(button)
 
 function update_state()
 {
+	CLIENT=window.location.hash.substr(1);
 	var xhttp;
 	xhttp=new XMLHttpRequest();
 	xhttp.timeout = 1000;

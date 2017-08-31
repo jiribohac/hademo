@@ -1,6 +1,17 @@
 body {
 	overflow: auto;
 }
+div.header {
+	display: none;
+	text-align: center;
+}
+
+div.header:target {
+	display: block;
+}
+div.preload {
+	display: none;
+}
 
 div.container {
 	background-image: url("bg.png");
