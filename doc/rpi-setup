@@ -24,7 +24,12 @@ BASIC SETUP:
 zypper ar ftp://dist.arch.suse.de/install/SLP/SLE-12-SP3-Server-LATEST/aarch64/DVD1 sle12-sp3
 zypper ar http://download.suse.de/ibs/SUSE:/SLE-12-SP3:/Update/standard/ sle12-sp3-update
 zypper ar http://download.opensuse.org/repositories/home:/malcolmlewis:/SLES12-SP2-RPI-Extra/SLES12-SP2-RPI-Extra/ rpi-extra
-zypper in git-core wiringPi wiringPi-devel libwiringPi2
+zypper ar http://download.suse.de/ibs/SUSE:/SLE-12-SP3:/GA/standard/ sle12-sp3-ftp
+zypper ar http://download.suse.de/ibs/SUSE:/SLE-12-SP2:/GA/standard/ sle12-sp2-ftp
+zypper ar http://download.suse.de/ibs/SUSE:/SLE-12-SP1:/GA/standard/ sle12-sp1-ftp
+zypper ar http://download.suse.de/ibs/SUSE:/SLE-12:/GA/standard/ sle12-ftp
+
+zypper in git-core wiringPi wiringPi-devel libwiringPi2 ha_sles
 chmod u+s /usr/bin/wiringPi-gpio
 #git clone http://github.com/jiribohac/hademo.git
 
