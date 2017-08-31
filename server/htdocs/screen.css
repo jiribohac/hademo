@@ -85,32 +85,32 @@ div#up.button_active {
 	background-color: white;
 }
 
-div#cw.button_inactive {
+div#ccw.button_inactive {
 	background-image: url("arrow_rot_left_inactive.gif");
 	background-color: white;
 }
 
-div#cw.button_inprogress {
+div#ccw.button_inprogress {
 	background-image: url("arrow_rot_left_pending.gif");
 	background-color: white;
 }
 
-div#cw.button_active {
+div#ccw.button_active {
 	background-image: url("arrow_rot_left_active.gif");
 	background-color: white;
 }
 
-div#ccw.button_inactive {
+div#cw.button_inactive {
 	background-image: url("arrow_rot_right_inactive.gif");
 	background-color: white;
 }
 
-div#ccw.button_inprogress {
+div#cw.button_inprogress {
 	background-image: url("arrow_rot_right_pending.gif");
 	background-color: white;
 }
 
-div#ccw.button_active {
+div#cw.button_active {
 	background-image: url("arrow_rot_right_active.gif");
 	background-color: white;
 }

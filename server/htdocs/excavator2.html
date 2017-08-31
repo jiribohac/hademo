@@ -13,26 +13,27 @@
 	CLIENT=2;
 </script>
 <script type="text/javascript" src="control.js"></script>
-
+<div class="container">
 <div class="vertical">
-	<div class="button_inactive" id="up" onclick="set_state('up');">&nbsp;</div>
-	<div class="button_inactive" id="nov" onclick="set_state('nov');">&nbsp;</div>
-	<div class="button_inactive" id="down" onclick="set_state('down');">&nbsp;</div>
+	<div class="button_inprogress" id="up" onclick="set_state('up');"></div>
+	<div class="button_inprogress" id="nov" onclick="set_state('nov');"></div>
+	<div class="button_inprogress" id="down" onclick="set_state('down');"></div>
 </div>
 
 <div class="horizontal">
-	<div class="button_inactive" id="cw" onclick="set_state('cw');">&nbsp;</div>
-	<div class="button_inactive" id="noh" onclick="set_state('noh');">&nbsp;</div>
-	<div class="button_inactive" id="ccw" onclick="set_state('ccw');">&nbsp;</div>
+	<div class="button_inprogress" id="ccw" onclick="set_state('ccw');"></div>
+	<div class="button_inprogress" id="noh" onclick="set_state('noh');"></div>
+	<div class="button_inprogress" id="cw" onclick="set_state('cw');"></div>
 </div>
 
 <div class="belt">
-	<div class="button_inactive" id="belt" onclick="set_state('belt');">&nbsp;</div>
-	<div class="button_inactive" id="nobelt" onclick="set_state('nobelt');">&nbsp;</div>
+	<div class="button_inprogress" id="belt" onclick="set_state('belt');"></div>
+	<div class="button_inprogress" id="nobelt" onclick="set_state('nobelt');"></div>
 </div>
 
 <div id="error" class="error_hidden">
 	Error communicating with the server. Try <a href="haha">HA</a>!
+</div>
 </div>
 
 </body>
