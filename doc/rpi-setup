@@ -85,6 +85,16 @@ IPADDR='192.168.0.232/24'
 STARTMODE='auto'
 
 echo "default 192.168.0.1 - -" > /etc/sysconfig/network/routes 
+echo -e "t\n4\n83\nw\nq\n" | fdisk /dev/mmcblk0
+mkfs.ext3 /dev/mmcblk0p4
+echo "/dev/mmcblk0p4 /rw ext3 defaults 0 0" >> /etc/fstab
+mkdir /rw
+mount /rw
+mkdir /rw/pacemaker
+mv /var/lib/pacemaker/pengine /var/lib/pacemaker.orig
+ln -s /rw/pacemaker /var/lib/pacemaker/pengine
+
+
 
 
 systemctl enable apache2
@@ -102,17 +112,20 @@ cat > /etc/systemd/system/sbd-device.service <<_END
 [Unit]
 Description=SBD loopback device
 After=sbd.mount dev-loop0.device
+Before=sbd.service
 
 [Service]
 Type=oneshot
+RemainAfterExit=yes
 ExecStart=/sbin/losetup /dev/loop0 /sbd/diskimage
+ExecStop=/sbin/losetup -d /dev/loop0
 
 [Install]
 WantedBy=multi-user.target
 _END
 systemctl enable sbd-device
 
-echo -e '#!/bin/bash\nwhile true; do\ndate  -s "`net time -S 192.168.0.1`"\nsleep 60\ndone' > /usr/local/sbin/date-sync
+echo -e '#!/bin/bash\nwhile true; do\nD=`net time -S 192.168.0.1` && date  -s "$D"\nsleep 60\ndone' > /usr/local/sbin/date-sync
 chmod a+x /usr/local/sbin/date-sync
 cat > /etc/systemd/system/date-sync.service <<_END
 [Unit]
@@ -134,6 +147,27 @@ rm -rf /var/lib/samba/lock /var/lib/samba/private
 ln -s /tmp /var/lib/samba/lock
 ln -s /tmp /var/lib/samba/private
 
+cat > /etc/systemd/system/leds-off.service <<_END
+[Unit]
+Description=Turn off LEDs
+DefaultDependencies=false
+
+[Service]
+ExecStart=/usr/local/sbin/leds-off
+
+[Install]
+WantedBy=multi-user.target
+_END
+cat > /usr/local/sbin/leds-off <<_END
+#!/bin/bash
+wiringPi-gpio mode 8 output
+wiringPi-gpio mode 9 output
+wiringPi-gpio write 8 0
+wiringPi-gpio write 9 0
+_END
+chmod a+x /usr/local/sbin/leds-off
+systemctl enable leds-off
+echo "blacklist i2c-bcm2835" >> /etc/modprobe.d/50-blacklist.conf
 
 
 # HA #################
