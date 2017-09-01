@@ -57,7 +57,12 @@ d    /var/run/apache2/sysconfig.d   0755 root root 10d -
 _END
 reboot
 
-
+cat >> /etc/hosts <<_END
+192.168.0.231   server1
+192.168.0.232   server2
+192.168.0.241   client1
+192.168.0.242   client2
+_END
 
 
 SERVER SETUP
@@ -79,11 +84,80 @@ BOOTPROTO='STATIC'
 IPADDR='192.168.0.232/24'
 STARTMODE='auto'
 
+echo "default 192.168.0.1 - -" > /etc/sysconfig/network/routes 
+
 
 systemctl enable apache2
 systemctl start apache2
 
+SBD:
+zypper in cifs-utils
+mkdir /sbd
+echo '//192.168.0.1/volume(sda1) /sbd cifs defaults,password=,nofail 0 0' >> /etc/fstab
+mount /sbd
 
+echo "loop" > /etc/modules-load.d/loop.conf
+
+cat > /etc/systemd/system/sbd-device.service <<_END
+[Unit]
+Description=SBD loopback device
+After=sbd.mount dev-loop0.device
+
+[Service]
+Type=oneshot
+ExecStart=/sbin/losetup /dev/loop0 /sbd/diskimage
+
+[Install]
+WantedBy=multi-user.target
+_END
+systemctl enable sbd-device
+
+echo -e '#!/bin/bash\nwhile true; do\ndate  -s "`net time -S 192.168.0.1`"\nsleep 60\ndone' > /usr/local/sbin/date-sync
+chmod a+x /usr/local/sbin/date-sync
+cat > /etc/systemd/system/date-sync.service <<_END
+[Unit]
+Description=Sync date to router
+After=network.target
+Conflicts=systemd-timesyncd.service
+Wants=time-sync.target
+Before=time-sync.target
+
+[Service]
+ExecStart= /usr/local/sbin/date-sync
+
+[Install]
+WantedBy=multi-user.target
+_END
+systemctl enable date-sync
+
+rm -rf /var/lib/samba/lock /var/lib/samba/private
+ln -s /tmp /var/lib/samba/lock
+ln -s /tmp /var/lib/samba/private
+
+
+
+# HA #################
+make sure the time on the router is reasonable :)    1970 breaks hawk
+###############
+
+#R-O root tweaks
+echo "d    /var/log/cluster   0755 root root 10d -" > /etc/tmpfiles.d/corosync.conf
+echo "tmpfs /var/lib/corosync tmpfs defaults 0 0" >> /etc/fstab
+rm -rf /srv/www/hawk/tmp
+ln -s /tmp/ /srv/www/hawk/tmp
+
+
+echo softdog > /etc/modules-load.d/watchdog.conf
+systemctl restart systemd-modules-load
+
+server1:
+ha-cluster-init
+	- sbd device=/dev/loop0
+	- manegement ip = 192.168.0.220
+	- everything else: default
+
+server2:
+	ha-cluster-join
 
 
 CLIENT SETUP
