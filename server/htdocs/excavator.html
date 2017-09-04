@@ -8,18 +8,18 @@
 </head>
 <body>
 
+<script type="text/javascript" src="control.js"></script>
+<div class="container">
 <div class="header" id="1">
-<h1>excavator #1</h1>
-<p>You can switch to <a href="http://192.168.0.230/excavator.html#2">excavator #2</a>.</p>
+	<p><img src="client1.gif"><a href="http://192.168.0.230/excavator.html#2"><img src="client2_s.gif"></a></p>
+	<p>Select the excavator</p>
 </div>
 
 <div class="header" id="2">
-<h1>excavator #2</h1>
-<p>You can switch to <a href="http://192.168.0.231/excavator.html#1">excavator #1</a>.</p>
+	<p><img src="client2.gif"><a href="http://192.168.0.230/excavator.html#1"><img src="client1_s.gif"></a></p>
+	<p>Select the excavator</p>
 </div>
 
-<script type="text/javascript" src="control.js"></script>
-<div class="container">
 <div class="vertical">
 	<div class="button_inprogress" id="up" onclick="set_state('up');"></div>
 	<div class="button_inprogress" id="nov" onclick="set_state('nov');"></div>
@@ -63,6 +63,10 @@
 	<img src="stop_active.gif" alt=""/>
 	<img src="stop_inactive.gif" alt=""/>
 	<img src="stop_pending.gif" alt=""/>
+	<img src="client1.gif" alt=""/>
+	<img src="client1_s.gif" alt=""/>
+	<img src="client2.gif" alt=""/>
+	<img src="client2_s.gif" alt=""/>
 </div>
 </body>
 </html>

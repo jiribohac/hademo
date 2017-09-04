@@ -3,7 +3,16 @@ body {
 }
 div.header {
 	display: none;
+	position: absolute;
 	text-align: center;
+	width: 100px;
+	left: 57px;
+	top: 310px;
+	font-size: 10px;
+}
+
+div.header p {
+	margin: 0px;
 }
 
 div.header:target {
