@@ -103,7 +103,7 @@ systemctl start apache2
 SBD:
 zypper in cifs-utils
 mkdir /sbd
-echo '//192.168.0.1/volume(sda1) /sbd cifs defaults,password=,nofail 0 0' >> /etc/fstab
+echo '//192.168.0.1/volume(sda1) /sbd cifs defaults,password=,x-systemd.automount 0 0' >> /etc/fstab
 mount /sbd
 
 echo "loop" > /etc/modules-load.d/loop.conf
@@ -111,19 +111,42 @@ echo "loop" > /etc/modules-load.d/loop.conf
 cat > /etc/systemd/system/sbd-device.service <<_END
 [Unit]
 Description=SBD loopback device
-After=sbd.mount dev-loop0.device
-Before=sbd.service
+After=sbd.automount
+Requires=sbd.automount
 
 [Service]
 Type=oneshot
 RemainAfterExit=yes
-ExecStart=/sbin/losetup /dev/loop0 /sbd/diskimage
+ExecStart= /usr/local/sbin/sbd-loop
 ExecStop=/sbin/losetup -d /dev/loop0
 
 [Install]
 WantedBy=multi-user.target
 _END
 systemctl enable sbd-device
+
+cat > /usr/local/sbin/sbd-loop <<_END
+#!/bin/bash
+
+while ! /sbin/losetup /dev/loop0 /sbd/diskimage; do
+        echo "cannot create sbd loop, waiting"
+        sleep 10
+done
+_END
+chmod a+x /usr/local/sbin/sbd-loop
+
+mkdir /etc/systemd/system/sbd.service.d
+cat > /etc/systemd/system/sbd.service.d/require-sbd-device.conf <<_END
+[Unit]
+Requires=sbd-device.service
+After=sbd-device.service
+
+[Service]
+Restart=always
+RestartSec=10
+_END
+
+sed -i 's/^SBD_OPTS.*$/SBD_OPTS="-vz"/' /etc/sysconfig/sbd
 
 echo -e '#!/bin/bash\nwhile true; do\nD=`net time -S 192.168.0.1` && date  -s "$D"\nsleep 60\ndone' > /usr/local/sbin/date-sync
 chmod a+x /usr/local/sbin/date-sync
