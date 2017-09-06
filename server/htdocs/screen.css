@@ -18,6 +18,20 @@ div.header p {
 div.header:target {
 	display: block;
 }
+
+div.error_visible {
+	position: relative;
+	top: -50px;
+	left: 50px;
+	width: 250px;
+	background-color: yellow;
+	border: solid red 4px;
+	font-size: 15px;
+}
+
+div.error_hidden {
+	display:none;
+}
 div.preload {
 	display: none;
 }
@@ -183,15 +197,3 @@ div#nobelt.button_inprogress {
 	background-color: white;
 }
 
-div.error_visible {
-	position: absolute;
-	top: 170px;
-	left: 250px;
-	width: 250px;
-	background-color: yellow;
-	border: solid red 4px;
-}
-
-div.error_hidden {
-	display:none;
-}
