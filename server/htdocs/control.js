@@ -28,7 +28,17 @@ function update_buttons(belt, vertical, horizontal)
 
 function error()
 {
-	document.getElementById("error").className = "error_visible";
+	CLIENT=window.location.hash.substr(1);
+	e = document.getElementById("error");
+	switch (CLIENT) {
+		case "1":
+			e.innerHTML = 'Error communicating with the server. Try the <a href="http://192.168.0.230/excavator.html#2">HA version</a>!';
+			break;
+		case "2":
+			e.innerHTML = 'Failover in progress, please wait...';
+			break;
+	}
+	e.className = "error_visible";
 }
 
 function noerror()
