@@ -91,6 +91,7 @@ echo "/dev/mmcblk0p4 /rw ext3 defaults 0 0" >> /etc/fstab
 mkdir /rw
 mount /rw
 mkdir /rw/pacemaker
+mkdir /rw/log
 mv /var/lib/pacemaker/pengine /var/lib/pacemaker.orig
 ln -s /rw/pacemaker /var/lib/pacemaker/pengine
 
