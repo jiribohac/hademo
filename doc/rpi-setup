@@ -195,7 +195,10 @@ echo "blacklist i2c-bcm2835" >> /etc/modprobe.d/50-blacklist.conf
 
 
 # HA #################
-make sure the time on the router is reasonable :)    1970 breaks hawk
+# make sure the time on the router is reasonable :)    1970 breaks hawk
+# SUSE HAWK console: https://192.168.0.230:7630
+# login: hacluster
+# pass: linux
 ###############
 
 #R-O root tweaks
