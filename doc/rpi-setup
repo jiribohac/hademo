@@ -221,7 +221,7 @@ server2:
 CLIENT SETUP
 ------------
 
-CLIENT1:
+CLIENT1 (orange excavator)
 
 echo client1 > /etc/hostname
 cat > /etc/sysconfig/network/ifcfg-wlan0
@@ -235,7 +235,7 @@ SERVER=192.168.0.231
 CLIENT=1
 
 
-CLIENT2:
+CLIENT2 (blue excavator):
 
 echo client2 > /etc/hostname
 cat > /etc/sysconfig/network/ifcfg-wlan0
@@ -245,7 +245,7 @@ STARTMODE='auto'
 WIRELESS_ESSID="SUSE HA Demo"
 
 cat > /etc/hademo.conf
-SERVER=192.168.0.231
+SERVER=192.168.0.230
 CLIENT=2
 
 
